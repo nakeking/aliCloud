@@ -3,6 +3,7 @@
 	var style = "max-width: 640px; margin: 0 auto; overflow: hidden; height: 100%";
 	var style2 = "max-width: 640px; margin: 0 auto;";
 	stopTouchend();
+	var clickEvent = isPc();
 	/*
 	*	产品列表事件绑定
 	 */
@@ -14,8 +15,6 @@
 		expanders[i].dataset.index= i;
 		expanders[i].style.cssText = "height: 0";
 	}
-
-	var clickEvent = isPc();
 
 	$(ulist).on(clickEvent, function(e){
 		var item = e.target.parentNode.parentNode;
@@ -87,6 +86,21 @@
 					item.dataset.show = false;
 				}
 			}
+		}
+	})
+
+	var homeButton = document.getElementById('home-button');
+	var homeModule = document.getElementById('home-module');
+
+	$(homeButton).on(clickEvent, function(e){
+		if(homeModule.getAttribute('data-show') === "false"){
+			homeModule.classList.remove('moduleHide');
+			homeModule.classList.add('moduleShow');
+			homeModule.dataset.show = true;
+		}else{
+			homeModule.classList.remove('moduleShow');
+			homeModule.classList.add('moduleHide');
+			homeModule.dataset.show = false;
 		}
 	})
 
